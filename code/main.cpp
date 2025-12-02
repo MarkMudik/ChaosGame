@@ -49,6 +49,17 @@ int main() {
             if (event.type == Event::MouseMoved) {
                 mandel.setMouseLocation(Mouse::getPosition(window));
             }
+
+            if (event.type == Event::KeyPressed) {
+                if (event.key.code == Keyboard::S) {
+                    Texture texture;
+                    texture.create(window.getSize().x, window.getSize().y);
+                    texture.update(window);
+                    if (texture.copyToImage().saveToFile("mandelbrot_snap.png")) {
+                        cout << "Screenshot saved!" << endl;
+                    }
+                }
+            }
         }
 
         if (Keyboard::isKeyPressed(Keyboard::Escape)) {
@@ -67,5 +78,6 @@ int main() {
         
         window.display();
     }
+    
     return 0;
 }
