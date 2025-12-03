@@ -17,7 +17,6 @@ ChaosGame::ChaosGame(int pixelWidth, int pixelHeight) {
     m_randGen.seed(rd());
     
     m_vArray.setPrimitiveType(sf::Points);
-    m_vArray.reserve(m_pixel_size.x * m_pixel_size.y); 
 
     setPolygon(3);
 }
@@ -103,13 +102,14 @@ void ChaosGame::runIteration() {
         do {
             chosenIndex = distrib(m_randGen);
         } while (chosenIndex == m_lastVertexIndex);
-    } else { 
+    } else {
         chosenIndex = distrib(m_randGen);
     }
     
     m_lastVertexIndex = chosenIndex;
     sf::Vector2f chosenVertex = m_vertices[chosenIndex];
 
+    
     sf::Vector2f vectorToVertex = chosenVertex - m_currentPoint;
     sf::Vector2f moveVector = m_ratio * vectorToVertex;
     sf::Vector2f newPoint = m_currentPoint + moveVector;
